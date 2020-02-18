@@ -9,15 +9,14 @@ import { ModuleView } from './components/modules/ModuleView';
 import { Trainees } from './components/trainees/Trainees';
 import { TraineeView } from './components/trainees/TraineeView';
 
-
 export default () => (
-    <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetch-data/:startDateIndex?' component={FetchData} />
-        <Route exact path='/modules' component={Modules} />
-        <Route exact path='/modules/:moduleId' component={ModuleView} />
-        <Route exact path='/trainees' component={Trainees} />
-        <Route exact path='/trainees/:traineeId' component={TraineeView} />
-    </Layout>
+  <Layout>
+    <Route exact path="/" component={Home} />
+    <Route path="/counter" component={Counter} />
+    <Route path="/fetch-data/:startDateIndex?" component={FetchData} />
+    <Route exact path="/modules" component={Modules} />
+    <Route exact path="/modules/:moduleId" component={ModuleView} />
+    <Route exact path="/trainees" component={Trainees} />
+    <Route exact path="/trainees/:traineeId" component={TraineeView} />
+  </Layout>
 );

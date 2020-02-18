@@ -1,26 +1,23 @@
 ﻿import * as React from 'react';
 
-
-
 interface IAssignmentFormProps {
-    // SOMETHING?
+  // SOMETHING?
 }
 
 interface IAssignmentFormStates {
-    // SOMETHING?
+  // SOMETHING?
 }
 
 // This class displays all the VR modules
-export class Modules extends React.PureComponent<IAssignmentFormProps, IAssignmentFormStates> {
-
-    constructor(props: IAssignmentFormProps) {
-        super(props);
-        this.state = {};
-    }
-    public render() {
-        return (
-            <div>Use this form to assign a module to a trainee.</div>
-        );
-    }
+export class Modules extends React.PureComponent<
+  IAssignmentFormProps,
+  IAssignmentFormStates
+> {
+  constructor(props: IAssignmentFormProps) {
+    super(props);
+    this.state = {};
+  }
+  public render() {
+    return <div>Use this form to assign a module to a trainee.</div>;
+  }
 }
-

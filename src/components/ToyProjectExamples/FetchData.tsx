@@ -6,11 +6,9 @@ import { IApplicationState } from '../../store';
 import * as WeatherForecastsStore from '../../store/WeatherForecasts';
 
 // At runtime, Redux will merge together...
-type WeatherForecastProps =
-  WeatherForecastsStore.WeatherForecastsState // ... state we've requested from the Redux store
-  & typeof WeatherForecastsStore.actionCreators // ... plus action creators we've requested
-  & RouteComponentProps<{ startDateIndex: string }>; // ... plus incoming routing parameters
-
+type WeatherForecastProps = WeatherForecastsStore.WeatherForecastsState & // ... state we've requested from the Redux store
+  typeof WeatherForecastsStore.actionCreators & // ... plus action creators we've requested
+  RouteComponentProps<{ startDateIndex: string }>; // ... plus incoming routing parameters
 
 class FetchData extends React.PureComponent<WeatherForecastProps> {
   // This method is called when the component is first added to the document
@@ -27,23 +25,26 @@ class FetchData extends React.PureComponent<WeatherForecastProps> {
     return (
       <React.Fragment>
         <h1 id="tabelLabel">Weather forecast</h1>
-        <p>This component demonstrates fetching data from the server and working with URL parameters.</p>
-    <p>{"Index " + this.props.match.params.startDateIndex}</p>
+        <p>
+          This component demonstrates fetching data from the server and working
+          with URL parameters.
+        </p>
+        <p>{'Index ' + this.props.match.params.startDateIndex}</p>
         {this.renderForecastsTable()}
         {this.renderPagination()}
       </React.Fragment>
     );
   }
 
-
   private ensureDataFetched() {
-    const startDateIndex = parseInt(this.props.match.params.startDateIndex, 10) || 0;
+    const startDateIndex =
+      parseInt(this.props.match.params.startDateIndex, 10) || 0;
     this.props.requestWeatherForecasts(startDateIndex);
   }
 
   private renderForecastsTable() {
     return (
-      <table className='table table-striped' aria-labelledby="tabelLabel">
+      <table className="table table-striped" aria-labelledby="tabelLabel">
         <thead>
           <tr>
             <th>Date</th>
@@ -53,13 +54,15 @@ class FetchData extends React.PureComponent<WeatherForecastProps> {
           </tr>
         </thead>
         <tbody>
-          {this.props.forecasts.map((forecast: WeatherForecastsStore.WeatherForecast) =>
-            <tr key={forecast.date}>
-              <td>{forecast.date}</td>
-              <td>{forecast.temperatureC}</td>
-              <td>{forecast.temperatureF}</td>
-              <td>{forecast.summary}</td>
-            </tr>
+          {this.props.forecasts.map(
+            (forecast: WeatherForecastsStore.WeatherForecast) => (
+              <tr key={forecast.date}>
+                <td>{forecast.date}</td>
+                <td>{forecast.temperatureC}</td>
+                <td>{forecast.temperatureF}</td>
+                <td>{forecast.summary}</td>
+              </tr>
+            )
           )}
         </tbody>
       </table>
@@ -72,9 +75,19 @@ class FetchData extends React.PureComponent<WeatherForecastProps> {
 
     return (
       <div className="d-flex justify-content-between">
-        <Link className='btn btn-outline-secondary btn-sm' to={`/fetch-data/${prevStartDateIndex}`}>Previous</Link>
+        <Link
+          className="btn btn-outline-secondary btn-sm"
+          to={`/fetch-data/${prevStartDateIndex}`}
+        >
+          Previous
+        </Link>
         {this.props.isLoading && <span>Loading...</span>}
-        <Link className='btn btn-outline-secondary btn-sm' to={`/fetch-data/${nextStartDateIndex}`}>Next</Link>
+        <Link
+          className="btn btn-outline-secondary btn-sm"
+          to={`/fetch-data/${nextStartDateIndex}`}
+        >
+          Next
+        </Link>
       </div>
     );
   }
