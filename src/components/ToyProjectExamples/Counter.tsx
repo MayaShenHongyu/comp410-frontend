@@ -7,56 +7,50 @@ import { Dispatch } from 'redux';
 type CounterProps = ICounterStateProps & ICounterDispatchProps;
 
 interface ICounterStateProps {
-  count: number;
+    count: number;
 }
 
 interface ICounterDispatchProps {
-  setCount: (count: number) => void;
-  increment: () => void;
-  decrement: () => void;
+    setCount: (count: number) => void;
+    increment: () => void;
+    decrement: () => void;
 }
 
 class Counter extends React.PureComponent<CounterProps> {
-  public render() {
-    return (
-      <React.Fragment>
-        <h1>Counter</h1>
+    public render() {
+        return (
+            <React.Fragment>
+                <h1>Counter</h1>
 
-        <p>This is a simple example of a React component.</p>
+                <p>This is a simple example of a React component.</p>
 
-        <p aria-live="polite">
-          Current count: <strong>{this.props.count}</strong>
-        </p>
+                <p aria-live="polite">Current count: <strong>{this.props.count}</strong></p>
 
-        <button
-          type="button"
-          className="btn btn-primary btn-lg"
-          onClick={() => {
-            this.props.increment();
-          }}
-        >
-          Increment
-        </button>
-      </React.Fragment>
-    );
-  }
+                <button type="button"
+                    className="btn btn-primary btn-lg"
+                    onClick={() => { this.props.increment(); }}>
+                    Increment
+                </button>
+            </React.Fragment>
+        );
+    }
 }
 
 const mapStateToProps = (state: IApplicationState): ICounterStateProps => {
-  return {
-    count: state.counter.count
-  };
+    return {
+        count: state.counter.count
+    }
 };
 
-const mapDispatchToProps = (
-  dispatch: Dispatch<CounterStore.CounterAction>
-): ICounterDispatchProps => {
-  return {
-    setCount: (count: number) =>
-      dispatch(CounterStore.actionCreators.setCount(count)),
-    increment: () => dispatch(CounterStore.actionCreators.increment()),
-    decrement: () => dispatch(CounterStore.actionCreators.decrement())
-  };
+const mapDispatchToProps = (dispatch: Dispatch<CounterStore.CounterAction>): ICounterDispatchProps => {
+    return {
+        setCount: (count: number) => dispatch(CounterStore.actionCreators.setCount(count)),
+        increment: () => dispatch(CounterStore.actionCreators.increment()),
+        decrement: () => dispatch(CounterStore.actionCreators.decrement()),
+    }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Counter);

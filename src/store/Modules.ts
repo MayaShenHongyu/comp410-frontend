@@ -1,14 +1,22 @@
 ﻿import { Action, Reducer } from 'redux';
 
-export interface ModulesState {}
 
-enum ActionType {}
+
+export interface ModulesState {
+}
+
+enum ActionType {
+}
 
 // ACTIONS
 
+
+
 // ACTION CREATERS
 
-export const actionCreators = {};
+export const actionCreators = {
+
+};
 
 // ----------------
 // REDUCER - For a given state and action, returns the new state. To support time travel, this must not mutate the old state.
